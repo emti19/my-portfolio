@@ -214,7 +214,7 @@ function Resume() {
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
       <Button variant="secondary" className="group mt-6 w-full">
-        <Link href="https://drive.google.com/file/d/1FbyzOcX2kBRHDUmHGxMY-wADSEs5g_--/view?usp=sharing" target="_blank"  rel="noopener noreferrer">Download Professinal CV</Link>
+        <Link href="https://drive.google.com/file/d/1FbyzOcX2kBRHDUmHGxMY-wADSEs5g_--/view?usp=sharing" target="_blank"  rel="noopener noreferrer">Download Professional CV</Link>
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
     </div>
