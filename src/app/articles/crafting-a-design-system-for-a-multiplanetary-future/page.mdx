@@ -1,0 +1,160 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import nest from './nest.png'
+
+export const article = {
+  author: 'Adam Wathan',
+  date: '2023-04-10',
+  title: 'Learning curve of NestJS for Beginners: Exploring the Repository Pattern',
+  description:
+    'I made this diagram to demonstrate how data flows in a NestJs project from a beginner’s perspective. If there is anything wrong please suggest. I’m still learning.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+## ***A simplified version of this article will be found in my [LinkedIn](https://www.linkedin.com/posts/emtiasur-rahman_nestjs-nodejs-typescript-activity-7060884119446028288-MY3A?utm_source=share&utm_medium=member_desktop)***
+Anyone who is learning NestJs or working with it, may find it helpful.
+
+The repository pattern is used to demonstrate this diagram. It’s a design pattern that isolates the data layer from the rest of the app. For more about design patterns you can google it or ChatGPT it.
+
+<Image src={nest} alt="" />
+
+Explanation: Our purpose is to get response of a request made by users. The demo table(Products) is created by Migration and we can feed or insert data into the table by using Seeder. While processing the data insertion, a validation pipe is used so the user can’t insert other types of data except the type defined in the validator.
+
+## 1. Establishing the Repository Pattern
+
+```c
+// product.repository.ts
+import { EntityRepository, Repository } from 'typeorm';
+import { Product } from './product.entity';
+
+@EntityRepository(Product)
+export class ProductRepository extends Repository<Product> {
+  // Custom repository methods can be defined here
+}
+```
+In the heart of the pattern lies the repository file (product.repository.ts). Here, using TypeORM, a specialized repository is created for the Product entity. This class becomes the hub for various CRUD operations and additional data-related functionalities.
+
+## 2. Migration and Seeder: Shaping the Data Landscape
+```c
+// product.entity.ts
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity()
+export class Product {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @Column()
+  price: number;
+}
+```
+The Product entity is defined with necessary properties using TypeORM decorators. Migrations are employed to create the corresponding database table. Seeder scripts can then populate this table with sample data.
+
+## 3. Validator and Validation Pipe: Enforcing Data Integrity
+```c
+// create-product.dto.ts
+import { IsString, IsNumber } from 'class-validator';
+
+export class CreateProductDto {
+  @IsString()
+  name: string;
+
+  @IsNumber()
+  price: number;
+}
+```
+```c
+// validation.pipe.ts
+import { PipeTransform, Injectable, BadRequestException } from '@nestjs/common';
+import { validate } from 'class-validator';
+import { plainToClass } from 'class-transformer';
+
+@Injectable()
+export class ValidationPipe implements PipeTransform<any> {
+  async transform(value: any, metadata: ArgumentMetadata) {
+    const { metatype } = metadata;
+    if (!metatype || !this.toValidate(metatype)) {
+      return value;
+    }
+    const object = plainToClass(metatype, value);
+    const errors = await validate(object);
+    if (errors.length > 0) {
+      throw new BadRequestException('Validation failed');
+    }
+    return value;
+  }
+
+  private toValidate(metatype: Function): boolean {
+    const types = [String, Boolean, Number, Array, Object];
+    return !types.includes(metatype);
+  }
+}
+```
+A validator (create-product.dto.ts) defines the expected structure of data, ensuring integrity. A Validation Pipe (validation.pipe.ts) is then implemented to enforce these constraints during data insertion.
+
+## 4. Service and Controller: Harmonizing Business Logic
+```c
+// product.service.ts
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ProductRepository } from './product.repository';
+import { CreateProductDto } from './create-product.dto';
+
+@Injectable()
+export class ProductService {
+  constructor(
+    @InjectRepository(ProductRepository)
+    private productRepository: ProductRepository,
+  ) {}
+
+  async createProduct(createProductDto: CreateProductDto) {
+    // Business logic for creating a product
+    return await this.productRepository.save(createProductDto);
+  }
+
+  async getAllProducts() {
+    // Business logic for fetching all products
+    return await this.productRepository.find();
+  }
+}
+```
+
+```c
+// product.controller.ts
+import { Controller, Get, Post, Body, UsePipes } from '@nestjs/common';
+import { ProductService } from './product.service';
+import { CreateProductDto } from './create-product.dto';
+import { ValidationPipe } from './validation.pipe';
+
+@Controller('products')
+export class ProductController {
+  constructor(private productService: ProductService) {}
+
+  @Post()
+  @UsePipes(ValidationPipe)
+  createProduct(@Body() createProductDto: CreateProductDto) {
+    return this.productService.createProduct(createProductDto);
+  }
+
+  @Get()
+  getAllProducts() {
+    return this.productService.getAllProducts();
+  }
+}
+```
+The Service file (product.service.ts) encapsulates business logic, utilizing the injected Repository for data operations. The Controller (product.controller.ts) acts as a mediator, handling incoming requests, applying validation through the Validation Pipe, and orchestrating responses.
+
+Thanks and Love from Emtiasur Rahman, a forever learner. If you are also a learner and want to discuss, DM me. Let's learn together.
+
+Emtiasur Rahman <br/>
+Software Engineer <br/>
+Dhaka, Bangladesh
