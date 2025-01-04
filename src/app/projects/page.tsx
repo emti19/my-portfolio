@@ -14,21 +14,21 @@ const projects = [
     name: 'DLRMS',
     description:
       'Digital Land Record Management System is designed for the people of the Government of Bangladesh to serve land related services.',
-    link: { href: 'https://dlrms.softbd.xyz/', label: 'https://dlrms.softbd.xyz/' },
+    link: { href: 'https://dlrms.land.gov.bd/', label: 'https://dlrms.land.gov.bd/' },
     logo: logoDlrms,
   },
   {
     name: 'Land Automation MS',
     description:
       'Land Automation Management Service is developed fo managing human resource manager of the Ministry of Land,Bangladesh.',
-    link: { href: 'http://lams.utility.eporcha.gov.bd/', label: 'http://lams.utility.eporcha.gov.bd/' },
+    link: { href: 'https://lams.land.gov.bd/', label: 'https://lams.land.gov.bd/' },
     logo: logoLams,
   },
   {
     name: 'Land Service Gateway(LSG)',
     description:
       'Land Service Gateway is a gateway to navigate to all the services of the Ministry of Land,Bangladesh.(Restricted, Login Needed).',
-    link: { href: 'https://lsg-dashboard.land.gov.bd/', label: 'https://lsg-dashboard.land.gov.bd/' },
+    link: { href: 'https://land.gov.bd/', label: 'https://land.gov.bd/' },
     logo: logoLams,
   },
   {
@@ -91,7 +91,7 @@ export default function Projects() {
               />
             </div>
             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href}>{project.name}</Card.Link>
+              <Card.Link href={project.link.href} target='_blank'>{project.name}</Card.Link>
             </h2>
             <Card.Description>{project.description}</Card.Description>
             <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">

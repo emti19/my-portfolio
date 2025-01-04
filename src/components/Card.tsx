@@ -35,6 +35,7 @@ export function Card<T extends React.ElementType = 'div'>({
 
 Card.Link = function CardLink({
   children,
+  target,
   ...props
 }: React.ComponentPropsWithoutRef<typeof Link>) {
   return (

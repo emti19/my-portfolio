@@ -9,10 +9,10 @@ export const metadata: Metadata = {
   title: {
     template: '%s - Emtiasur Rahman',
     default:
-      'Emtiasur Rahman - Software Engineer, Researcher, and amateur Explorer',
+      'Emtiasur Rahman - Software Engineer, AI Researcher, and amateur Explorer',
   },
   description:
-    ' I’m Emtias, a software engineer and researcher based in Dhaka, Bangladesh.',
+    ' I’m Emtias, a software engineer and AI researcher based in Chattogram, Bangladesh.',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,

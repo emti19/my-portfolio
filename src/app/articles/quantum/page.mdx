@@ -1,0 +1,140 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import quan from './quan.jpg'
+import gr from './gr.jpg'
+
+export const article = {
+  author: 'Emtiasur Rahman',
+  date: '2024-12-13',
+  title: 'Quantum Computing, Quantum Networks, and Quantum Circuits',
+  description:
+    'Modern computers can be compared to bicycles, they perform tasks step by step, moving one pedal at a time. Quantum computers, on the other hand, are like magical motorcycles, capable of moving all the pedals simultaneously.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+
+<b>Introduction</b> <br />
+1.1 Quantum Computing
+Modern computers can be compared to bicycles; they perform tasks step by step, moving one pedal at a time. Quantum computers, on the other hand, are like magical motorcy-
+cles, capable of moving all the pedals simultaneously [1].
+
+In normal computers, information is stored as bits (0s and 1s), similar to switches that are either ON or OFF. Quantum computers use “qubits,” which can be ON, OFF, and
+BOTH at the SAME time (superposition) [2]. It is similar to having a coin that shows heads and tails simultaneously.
+<Image src={quan} alt="" />  
+These quantum computers can solve super-complex problems much faster than regular
+computers. For example:<br />
+• Predicting weather super accurately,<br />
+• Designing new medicines,<br />
+• Solving complicated mathematical puzzles,<br />
+• Creating super strong encryption.<br /><br />
+Right now, quantum computers are very expensive, delicate machines that work only in
+special labs with super cold (close to absolute zero, or 0 Kelvin) temperatures. Scientists
+are working to make them more practical and affordable.<br /><br />
+They might help us solve problems that today’s computers can not even dream of solving.
+It can be compared to a superhero computer that can do calculations in seconds, which
+would take normal computers thousands of years.<br /><br />
+<b> 1.2 Graph Theory in Quantum Networks </b> <br /><br />
+Graph theory is a branch of mathematics. Graphs are structures consisting of nodes
+connected by edges. It is widely used to model relationships and interactions in various
+domains. In quantum networks, graph theory plays a crucial role in understanding and optimizing the communication and entanglement between quantum devices. In graph the-
+ory, nodes represent quantum devices and edges represent quantum channels or entangled states that enable the transmission of quantum information[4].<br /><br />
+Advantages of quantum networks include:<br />
+• Quantum Key Distribution (QKD) ensures unbreakable encryption.<br />
+• High-speed, low-latency communication via quantum entanglement.<br />
+• Potential for distributed quantum computing and advanced sensing applications.<br /><br />
+<b>1.3 Quantum State Generation </b> <br /><br />
+The process of generating quantum states for the purpose of quantum computation in a
+quantum circuit is called quantum state generation. Simply, setting a starting point to
+solve a problem by a quantum computer is quantum state generation[5].
+A special gate called Hadamard gate[6] is used to put qubits into a “superposition”.
+Without these quantum states, a quantum circuit can’t perform its task, and that’s why
+they are called the foundation for all quantum algorithms and computation.<br /><br />
+
+
+<b>2 Emerging and Recent Challenges</b> <br /><br />
+<b>2.1 Applying Graph Theory to Quantum Networks</b> <br /><br />
+<b>2.1.1 Optimization of Quantum Resource Allocation</b> <br /><br />
+Quantum resources (qubits, entangled states, quantum channels, and quantum memories) are limited, expensive and fragile. Managing these resources efficiently is what optimization of quantum resource allocation means. It ensures secure communication, quantum key distribution (QKD) and distributed computing, which makes the functions of quantum networks more effective. If these resources are not properly managed, it may lead to poor as well as  efficiency. Also, as quantum states are highly sensitive to noise, they make resource management more complex[7].<br /><br />
+Because of the noise and decoherence, qubits may lose their fidelity. So, it needs constant adjustments. Also, planning and allocation get more complex because of quantum entan-
+glement and the uncertainty of the quantum measurements. Resource allocation becomes even harder as the network grows larger.
+<b>How graph theory helps in optimization:</b> <br />
+Graph theory provides powerful tools to solve the complexity of resource allocation in quantum networks.
+
+Nodes and Edges: Represent quantum devices (e.g., repeaters, memory) and quantum channels.
+Weighted Edges: Consider parameters including available bandwidth, distance, and channel quality.
+
+Routing Algorithms: To optimize entanglement distribution pathways, modify graph based routing algorithms.
+<Image src={gr} alt="" /> 
+2.1.2 Fault-Tolerant Quantum Network Design
+
+Designing fault-tolerant quantum network focuses on building systems that remain active even if some nodes (quantum devices) or links (quantum channels) fail. If networks are not properly designed, these kinds of failures may disrupt quantum entanglement distribution as well as secure communication or other operations[8].
+
+In this scenario, graph theory has a key role in designing these processes. A graph can be used to represent a quantum network, where quantum devices are nodes and quantum channels are edges. Then by applying graph theory, researchers will be able to develop strategies to mitigate the vulnerabilities in the networks as well as efficiently detect them[9].
+
+For example:
+
+Redundancy: Multiples edges can be added as pathways to ensure the connectivity. When one link fails, other links will maintain the connection between different nodes.
+
+Fault Detection and Recovery: We can use graph algorithms that use graph structures for fault detection, and the network can be configured dynamically in real-time.
+
+The limited and fragile nature of quantum resources is the reason why we need fault tolerance. Some factors like environmental noise, decoherence make quantum states vulnerable. If the network design is not robust, small failures may spread and shut the network down. A fault-tolerant quantum network is important for quantum communication and distributed quantum computing, as it improves the overall reliability. It also ensures that the network works with minimum interventions, even in unexpected situations. This makes it a fundamental part of practical quantum networking.<br /><br />
+<b>2.1.3 Scalability with Graph Partitioning</b> <br /><br />
+When Quantum networks scale up, they become increasingly complex to manage and optimize. Scalability is a key factor when quantum networks become very complex as they scale up. It becomes very challenging to manage and optimize those complex and large quantum networks. In this scenario, graph partitioning algorithms may play a vital approach to apply to those large-scale networks. These algorithms will split the network into smaller, more manageable subnetworks that can be optimized and operated independently while maintaining overall functionality and connectivity[10].
+
+By grouping closely connected nodes together based on particular criteria, graph partitioning reduces the complex nature of large-scale networks. Criteria includes resource balancing, minimum intergroup connection etc. Graph partitioning is necessary in quantum networks because- <br />
+Less Computational Load: While allocating resource and entanglement routing task, subnetworks require less process than an entire complex network.
+
+Enhanced Performance: Optimizing subnetworks locally can boost efficiency and eliminate bottlenecks.
+
+By dividing large quantum networks into smaller subnetworks, researchers can deal with the challenges related to complexity, performance, and reliability. So, graph partitioning
+is important for scaling practical quantum internet and distributed quantum computing systems.<br /><br />
+<b>2.2 Quantum State Generation for Quantum Circuits</b> <br /><br />
+2.2.1 Decoherence and Noise<br />
+Quantum states are prone to decoherence[11], and so they are very fragile. Surrounding environment is responsible for it. Due to the decoherence, quantum properties such as superposition and entanglement may be lost. Furthermore, thermal or electromagnetic interference may also reduce the overall quality of quantum states.<br />
+
+2.2.2 Scalability Issue
+When a quantum system is scaled up by increasing qubits, it introduces huge complexity
+in terms of quantum state generation and managing them. Then the difficulties increases
+in maintaining the entanglement, coherent interactions between qubits while executing
+the quantum operations with proper efficiency.
+As the system size increases, errors become more difficult to control and spread more
+easily. It limits the overall performance of quantum circuits.
+
+<b>References</b>
+
+[1] Veritasium. How quantum computers break the internet... starting now, 2023. Ac-
+cessed: 2024-12-11.
+
+[2] Michio Kaku. Quantum computing is the next revolution, 2023. Accessed: 2024-12-
+11.
+
+[3] ResearchGate Contributors. Traditional computers vs quantum computers, 2023.
+Accessed: 2024-12-11.
+
+[4] Jorge Miguel-Ramiro, Alexander Pirker, and Wolfgang D ̈ur. Optimized quantum
+networks. Quantum, 7:919, February 2023.
+
+[5] Saipriya Satyajit, Karthik Srinivasan, Bikash Behera, and Prasanta Panigrahi. Non-
+destructive discrimination of a new family of highly entangled states in ibm quantum computer. Quantum Information Processing, 17, 07 2018.
+
+[6] Quantum Inspire. Hadamard gate, 2024.
+
+[7] Virendra Dani, Surbhi Kushwah, and Priyanka Kokate. Optimization of resource al-
+location using quantum genetic algorithm for cloud data. In 2021 Fifth International Conference on I-SMAC (IoT in Social, Mobile, Analytics and Cloud) (I-SMAC),
+pages 883–888, 2021.
+
+[8] Quera. Understanding fault-tolerant quantum computing, 2024.
+
+[9] Adam Glos. Application of graph theory in quantum computer science, 2021.
+
+[10] Vol Nr and Per-Olof Fjallstrom. Algorithms for graph partitioning: A survey. 10
+1998.
+
+[11] Wikipedia contributors. Quantum decoherence — wikipedia, the free encyclopedia,
+2024.

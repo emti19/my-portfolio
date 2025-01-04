@@ -191,7 +191,7 @@ function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
 
 function ThemeToggle() {
   let { resolvedTheme, setTheme } = useTheme()
-  let otherTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
+  let otherTheme = resolvedTheme === 'light' ? 'dark' : 'light'
   let [mounted, setMounted] = useState(false)
 
   useEffect(() => {

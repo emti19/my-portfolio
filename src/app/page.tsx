@@ -6,6 +6,7 @@ import {Container} from '@/components/Container'
 import {FacebookIcon, GitHubIcon, InstagramIcon, LinkedInIcon, TwitterIcon,} from '@/components/SocialIcons'
 import logoTechnext from '@/images/logos/technext.png'
 import logoSoftbd from '@/images/logos/softbd.png'
+import logoIiuc from '@/images/logos/iiuc_logo.png'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -180,12 +181,22 @@ function Role({ role }: { role: Role }) {
 function Resume() {
   let resume: Array<Role> = [
     {
+      company: 'International Islamic University Chittagong',
+      title: 'Sub-Assistant Programmer',
+      logo: logoIiuc,
+      start: '05/24',
+      end: {
+        label: 'Present',
+        dateTime: new Date().getFullYear().toString(),
+      },
+    },
+    {
       company: 'Soft BD Limited',
       title: 'Assistant Software Engineer',
       logo: logoSoftbd,
       start: '02/23',
       end: {
-        label: 'Present',
+        label: '04/24',
         dateTime: new Date().getFullYear().toString(),
       },
     },
@@ -294,31 +305,35 @@ export default async function Home() {
             Software Engineer, AI Researcher, and Explorer.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Emtias, a Software Engineer and Researcher based in Dhaka, Bangladesh.
+            I’m Emtias, a Software Engineer and AI Researcher based in Chattogram, Bangladesh.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
               href="https://twitter.com/EmtiasUr"
+              target='_blank'
               aria-label="Follow on Twitter"
               icon={TwitterIcon}
             />
             <SocialLink
               href="https://instagram.com/rahman_emti"
+              target='_blank'
               aria-label="Follow on Instagram"
               icon={InstagramIcon}
             />
             <SocialLink
-              href="https://github.com/unmad24"
+              href="https://github.com/emti19"
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
             />
             <SocialLink
               href="https://linkedin.com/in/emtiasur-rahman"
+              target='_blank'
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
             />
             <SocialLink
               href="https://www.facebook.com/rahman.emti/"
+              target='_blank'
               aria-label="Follow on Facebook"
               icon={FacebookIcon}
             />
