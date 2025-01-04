@@ -221,7 +221,7 @@ function Resume() {
         ))}
       </ol>
       <Button variant="secondary" className="group mt-6 w-full">
-        <Link href="https://drive.google.com/file/d/1uePMItxACwE4P7fFo-xh28QFdS33Z66N/view?usp=sharing" target="_blank"  rel="noopener noreferrer">Download Academic CV</Link>
+        <Link href="https://drive.google.com/file/d/1451JuTrNb-qnD6djeaJmSwVss4YOAWbH/view?usp=sharing" target="_blank"  rel="noopener noreferrer">Download Academic CV</Link>
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
       <Button variant="secondary" className="group mt-6 w-full">

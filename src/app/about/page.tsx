@@ -75,7 +75,7 @@ export default function About() {
             I’m Emtias, a Software Engineer and AI Researcher based in Chattogram, Bangladesh.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-            <p className='italic'>[The 'About' is written by ChatGPT, and I definitely proofread it.]</p>
+            <p className='italic'>The 'About' is written by ChatGPT, and I definitely proofread it.</p>
           <p>
             As a software engineer, I find joy in coding and creating solutions that turn ideas into reality. My deep interest in AI drives me to explore the fascinating world of deep learning, where I design algorithms to make machines smarter. My research in this field is reflected in a paper I’ve authored, showcasing my curiosity and dedication to innovation.
           </p>
