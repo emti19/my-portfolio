@@ -182,7 +182,7 @@ function Resume() {
   let resume: Array<Role> = [
     {
       company: 'International Islamic University Chittagong',
-      title: 'Sub-Assistant Programmer',
+      title: 'Assistant Programmer',
       logo: logoIiuc,
       start: '05/24',
       end: {
