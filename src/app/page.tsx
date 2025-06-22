@@ -98,9 +98,13 @@ function SocialLink({
   icon: React.ComponentType<{ className?: string }>
 }) {
   return (
+    <>
     <Link className="group -m-1 p-1" {...props} target="_blank"  rel="noopener noreferrer">
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
+    
+    </>
+    
   )
 }
 
@@ -141,7 +145,7 @@ interface Role {
   end: string | { label: string; dateTime: string }
 }
 
-function Role({ role }: { role: Role }) {
+function Role({ role, hideCompany = false }: { role: Role, hideCompany?: boolean }) {
   let startLabel =
     typeof role.start === 'string' ? role.start : role.start.label
   let startDate =
@@ -152,14 +156,13 @@ function Role({ role }: { role: Role }) {
 
   return (
     <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
-      </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
-        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          {role.company}
-        </dd>
+        {!hideCompany && (
+          <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+            {role.company}
+          </dd>
+        )}
         <dt className="sr-only">Role</dt>
         <dd className="text-xs text-zinc-500 dark:text-zinc-400">
           {role.title}
@@ -184,11 +187,18 @@ function Resume() {
       company: 'International Islamic University Chittagong',
       title: 'Assistant Programmer',
       logo: logoIiuc,
-      start: '05/24',
+      start: '04/25',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear().toString(),
       },
+    },
+    {
+      company: 'International Islamic University Chittagong',
+      title: 'Sub-Assistant Programmer',
+      logo: logoIiuc,
+      start: '05/24',
+      end: '03/25',
     },
     {
       company: 'Soft BD Limited',
@@ -216,18 +226,48 @@ function Resume() {
         <span className="ml-3">Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role} />
+        {/* IIUC company name once */}
+        <div className="mb-1 text-sm font-medium text-zinc-900 dark:text-zinc-100 flex items-center">
+          <span className="mr-2">
+            <Image src={resume[0].logo} alt="" className="h-6 w-6 inline-block mr-1 align-middle" unoptimized />
+            {resume[0].company}
+          </span>
+        </div>
+        {/* Timeline for IIUC roles */}
+        <div className="flex flex-col">
+          {/* Assistant Programmer (top, with line down) */}
+          <div className="flex items-start">
+            <div className="flex flex-col items-center mr-4">
+              <span className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-600 block mt-1" />
+              <span className="w-px h-6 bg-zinc-300 dark:bg-zinc-700" />
+            </div>
+            <div className="flex-1">
+              <Role key={0} role={resume[0]} hideCompany={true} />
+            </div>
+          </div>
+          {/* Sub-Assistant Programmer (bottom, no line down) */}
+          <div className="flex items-start">
+            <div className="flex flex-col items-center mr-4">
+              <span className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-600 block mt-1" />
+            </div>
+            <div className="flex-1">
+              <Role key={1} role={resume[1]} hideCompany={true} />
+            </div>
+          </div>
+        </div>
+        {/* Other roles */}
+        {resume.slice(2).map((role, roleIndex) => (
+          <Role key={roleIndex + 2} role={role} />
         ))}
       </ol>
       <Button variant="secondary" className="group mt-6 w-full">
-        <Link href="https://drive.google.com/file/d/1451JuTrNb-qnD6djeaJmSwVss4YOAWbH/view?usp=sharing" target="_blank"  rel="noopener noreferrer">Download Academic CV</Link>
+        <Link href="https://drive.google.com/file/d/1sWpS-sef2s-HCOHvffmSTwy2Zc8wC_a9/view?usp=sharing" target="_blank"  rel="noopener noreferrer">Download CV/Resume</Link>
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
-      <Button variant="secondary" className="group mt-6 w-full">
+      {/* <Button variant="secondary" className="group mt-6 w-full">
         <Link href="https://drive.google.com/file/d/1FbyzOcX2kBRHDUmHGxMY-wADSEs5g_--/view?usp=sharing" target="_blank"  rel="noopener noreferrer">Download Professional CV</Link>
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      </Button> */}
     </div>
   )
 }
@@ -285,11 +325,7 @@ function Photos() {
           </div>
         </div>
 
-        <div className="mt-20">
-          <a href="/projects" className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-5 dark:hover:text-teal-400">
-            See Projects
-          </a>
-        </div>
+        
       </div>
   )
 }
@@ -302,10 +338,10 @@ export default async function Home() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software Engineer, AI Researcher, and Explorer.
+            Software Engineer, AI Research Enthusiast, and Explorer.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Emtias, a Software Engineer and AI Researcher based in Chattogram, Bangladesh.
+            I'm Emtias, a Software Engineer and AI Enthusiast based in Chattogram, Bangladesh.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -339,8 +375,14 @@ export default async function Home() {
             />
           </div>
         </div>
+
+        <div className="mt-20">
+          <a href="/projects" className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mt-5 dark:hover:text-teal-400">
+            Projects I was Involved In . .
+          </a>
+        </div>
       </Container>
-      <Photos />
+      
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
@@ -349,11 +391,12 @@ export default async function Home() {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Newsletter />
             <Resume />
+            <Newsletter />
           </div>
         </div>
       </Container>
+      <Photos />
     </>
   )
 }
